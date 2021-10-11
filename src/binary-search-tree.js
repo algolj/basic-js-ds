@@ -30,19 +30,15 @@ module.exports = class BinarySearchTree {
     }
   }
 
-  has(data, type = 'has', tree = this._tree) {
-    return data == tree.data
-      ? type == 'has'
-        ? true
-        : tree
-      : tree[data > tree.data ? 'right' : 'left'] == null
-      ? type == 'has'
-        ? false
-        : null
-      : this.has(data, type, tree[data > tree.data ? 'right' : 'left']);
-  }
+  has = (data) => this.find(data, this._tree) != null;
 
-  find = (data) => this.has(data, 'find', this._tree);
+  find(data, tree = this._tree) {
+    return data == tree.data
+      ? tree
+      : tree[data > tree.data ? 'right' : 'left'] == null
+      ? null
+      : this.find(data, tree[data > tree.data ? 'right' : 'left']);
+  }
 
   remove(data) {
     const removeNode = (data, tree = this._tree) => {
