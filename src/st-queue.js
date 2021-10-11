@@ -15,9 +15,8 @@ const { ListNode } = require('../extensions/list-node.js');
  */
 module.exports = class Queue {
   _list = null;
-  getUnderlyingList() {
-    return this._list;
-  }
+
+  getUnderlyingList = () => this._list;
 
   enqueue(value) {
     if (this._list == null) {

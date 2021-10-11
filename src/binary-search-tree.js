@@ -8,9 +8,7 @@ const { Node } = require('../extensions/list-tree.js');
  */
 module.exports = class BinarySearchTree {
   _tree = null;
-  root() {
-    return this._tree;
-  }
+  root = () => this._tree;
 
   add(data, tree = this._tree) {
     if (tree == null) {
@@ -68,31 +66,24 @@ module.exports = class BinarySearchTree {
           pereves();
           tree = tree.right;
         }
-        return tree;
       } else {
         tree[data > tree.data ? 'right' : 'left'] = removeNode(
           data,
           tree[data > tree.data ? 'right' : 'left']
         );
-        return tree;
       }
+      return tree;
     };
     this._tree = removeNode(data);
   }
 
-  min(tree = this._tree) {
+  min(tree = this._tree, node = 'left') {
     return tree == null
       ? null
-      : tree.left != null
-      ? this.min(tree.left)
+      : tree[node] != null
+      ? this.min(tree[node], node)
       : tree.data;
   }
 
-  max(tree = this._tree) {
-    return tree == null
-      ? null
-      : tree.right != null
-      ? this.max(tree.right)
-      : tree.data;
-  }
+  max = () => this.min(this._tree, 'right');
 };
