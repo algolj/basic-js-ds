@@ -17,7 +17,7 @@ module.exports = class Stack {
 
   push = (element) => this._stack.push(element);
 
-  pop = () => this._stack.splice(-1)[0];
+  pop = () => this._stack.pop();
 
   peek = () => this._stack[this._stack.length - 1];
 };

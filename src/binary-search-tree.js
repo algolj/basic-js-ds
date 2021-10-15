@@ -30,7 +30,7 @@ module.exports = class BinarySearchTree {
     }
   }
 
-  has = (data) => this.find(data, this._tree) != null;
+  has = (data) => this.find(data) != null;
 
   find(data, tree = this._tree) {
     return data == tree.data
@@ -63,13 +63,13 @@ module.exports = class BinarySearchTree {
     this._tree = removeNode(data);
   }
 
-  min(tree = this._tree, node = 'left') {
+  min(node = 'left', tree = this._tree) {
     return tree == null
       ? null
       : tree[node] != null
-      ? this.min(tree[node], node)
+      ? this.min(node, tree[node])
       : tree.data;
   }
 
-  max = () => this.min(this._tree, 'right');
+  max = () => this.min('right', this._tree);
 };

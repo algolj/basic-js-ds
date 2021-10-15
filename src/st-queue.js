@@ -19,19 +19,21 @@ module.exports = class Queue {
   getUnderlyingList = () => this._list;
 
   enqueue(value) {
+    if (!value) return;
     if (this._list == null) {
       this._list = new ListNode(value);
     } else {
-      const addValueQueue = (cur) =>
+      const addValueQueue = (cur = this._list) =>
         cur.next == null
           ? (cur.next = new ListNode(value))
           : addValueQueue(cur.next);
 
-      addValueQueue(this._list);
+      addValueQueue();
     }
   }
 
   dequeue() {
+    if (!this._list) return null;
     const value = this._list.value;
     this._list = this._list.next;
     return value;
